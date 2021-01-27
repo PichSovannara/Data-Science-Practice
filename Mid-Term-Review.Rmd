@@ -1,0 +1,106 @@
+
+
+```{r}
+#1. Write R code to generate 6 x 6 matrix using random number between 1 - 100
+#   then generate another matrix using number between 500 - 600
+A <- sample(1:100, 36)
+B <- sample(500:600, 36)
+dim(A) = c(6,6)
+dim(B) = c(6,6)
+A
+B
+```
+```{r}
+#a.Find the range of matrix A and B
+print("Matrix A range between : ")
+min(A)
+print("and")
+max(A)
+print("Matrix b range between : ")
+min(B)
+print("and")
+max(B)
+```
+```{r}
+#b. Find Max value for each row
+```
+```{r}
+#c. Find diagonal of A and B
+print("Diagonal of A is : ")
+dA <- diag(A)
+dA
+print("Diagonal of B is : ")
+dB <- diag(B)
+dB
+```
+```{r}
+#d. Multiply A & B
+print("A x B = ")
+Mul <- A %*% B
+Mul
+```
+```{r}
+#e. Replace 4th row of matrix A with diagonal value of B
+i<-0
+while (i <= 6) {
+  A[4,i] <- dB[i]
+  i = i + 1
+}
+A
+```
+```{r}
+#f. Multiply A and B and store in X
+X <- A %*% B
+X
+```
+```{r}
+#g. Divide Matrix A with B
+A %*% solve(B)
+```
+```{r}
+#2. Create Table using dataframe with the following attributes:
+#a. First Name
+#b. Second Name
+#c. Age
+#d. Occupation
+#e. Place
+#f. Random number
+Table <- data.frame("First Name" = c("Pich","Chea","Ley","Kruy","Sreang","Set","Thaputh","Pich","Pich","Chea"), "Second Name" = c("Sovannara","Kimmunyvorn","Kimteng","Chandara","Vuthy","Samnang","Sopheak","Sovannarith", "Theavy","Nataly"), "Age" = c(21,20,20,21,21,21,19,19,21,23), "Ocupation" = c("Student","Student","Monk","Student","Monk","Student","Retailer","Student","Retailer","Student"), "Place" = c("pp","bmc","kpc","kpc","tk","tk","kpc","pp","pp","sr"), "Random Number" = c(sample(1:10,10, replace = TRUE)))
+Table
+
+```
+```{r}
+#g. Extract last column (f)
+Last_Col <- Table$Random.Number
+Last_Col
+```
+```{r}
+#h. Find sum, mean and length of extracted column
+print("The Sum is : ")
+sum(Last_Col)
+print("The Mean is : ")
+mean(Last_Col)
+print("The Length is :")
+length(Last_Col)
+```
+```{r}
+#4. Find Dataset and peform the fllowing:
+#a. Import data from source and clean
+library(ggplot2)
+data <- read.csv("C:/fight-songs/fight-songs.csv")
+na.omit(data)
+#b. Assign x and y axis + give reasons
+# I will choose victory x as number of fight and y as victory
+# Because the puspose here is to analyze whether the number of fights participated influence the likelyhood of vicotry
+plot <- ggplot(data, aes(x = number_fights, y = victory))
+#c. plot graph with geom_col()
+plot <- plot + geom_col()
+#d. Perform facet
+plot <- plot + facet_grid(student_writer ~ conference)
+#e. Use theme to customize x,y and plot title
+plot <- plot + xlab("Number of Fights") + ylab("Victory")+ ggtitle("Song Contest Wining Ratio") + 
+  theme(axis.title.x = element_text(size = 10, face = "bold", colour = "Green", margin = margin(t=20,r=0,b=0,l=0)),
+        axis.title.y = element_text(size = 10, face = "bold", colour = "Yellow", margin = margin(t=0,r=20,b=0,l=0)),
+        plot.title = element_text(size = 25, face = "bold", color = "Blue", margin = margin(t=0,r=0,b=25,l=0)))
+plot
+```
